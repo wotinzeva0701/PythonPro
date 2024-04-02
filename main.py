@@ -198,8 +198,7 @@
 # print("apple" == "Apple")
 # print("apple" > "Apple")  # 97 > 65
 
-from random import randint
-
+# from random import randint
 
 # min_ascii = 33
 # max_ascii = 126
@@ -238,8 +237,8 @@ from random import randint
 # s = "hello, WORLD! I am learning Python."
 # print(s)
 # a = s.capitalize()
-# print(a)  # Hello, world! i am learning python.
-# print(s.lower())  # hello, world! i am learning python.
+# print(a)
+# print(s.lower())  # hello, world! I am learning python.
 # print(s.upper())  # HELLO, WORLD! I AM LEARNING PYTHON.
 # print(s.count('l'))
 # print(s.lower().count('l'))
@@ -290,8 +289,8 @@ from random import randint
 # else:
 #     print(a + str(b))
 
-# print("abc123Ф!".isalnum())  # состоит ли строка только из букв и цифр
-# print("ABCabc".isalpha())  # состоит ли строка только из букв
+# print("abc123!".isalnum())  #  Состоит ли строка только из букв и цифр
+# print("ABCabc".isalpha())  #  Состоит ли строка только из букв
 #
 # print("abc123!@#". islower())  # определяет, являются ли буквенные символы строки в нижнем регистре
 # print("ACV123!@#". isupper())  # определяет, являются ли буквенные символы строки в верхнем регистре
@@ -326,7 +325,7 @@ from random import randint
 
 # Регулярное выражение
 
-import re
+# import re
 
 # s = "Я ищу совпадения в 2024 году. И я их найду в 2 счёта."
 # reg = r"\."
@@ -368,12 +367,396 @@ import re
 # print(valid_login("#@!Python"))
 
 
-def check(password):
-    return re.findall(r"[A-Za-z0-9_@-]{6,18}$", password)
+# def check(password):
+#     return re.findall(r"[A-Za-z0-9_@-]{6,18}$", password)
+#
+#
+# print(check("Pas_12@"))
+# print(check("Pasw!#3"))
 
 
-print(check("Pas_12@"))
-print(check("Pasw!#3"))
+#
+# 30.03.24
+#
+#
+# text = """Python,
+# python,
+# PYTHON"""
+# reg = "(?mi)^python"
+# print(re.findall(reg, text))
+#
+# text = "<body>Пример жадного соответствия регулярных выражений</body>"
+# print(re.findall("<.*>", text))  # [<body>, </body>]
+#
+# # *?, +?, ??
+# # {m,n}?, {,n}?, {m,}?
+#
+# s1 = "12 сентября 2024 года 4567897"
+# reg1 = r"\d{2,4}"
+# print(re.findall(reg1, s1))
+#
+#
+# s = "Петр, Ольга и  Виталий отлично учатся!"
+# reg = r"Ольга|Виталий"
+# print(re.findall(reg, s))
+#
+#
+# s = "int = 4, float = 4.0f, double = 8.0, float"
+# reg = r"int\w+\s*=\s*[.\w+]*|float"\s*=\s*[.\w+]*
+# reg = r"(?:int|float)\s*=\s*[.\w+]*"
+# print(re.findall(reg, s))
+# print(re.search(reg, s))
+#
+# #(?:...) - обозначает, что эта группирующая скобка является не сохраняющей
+#
+#
+# s = "5 + 7*2 - 4"
+# reg = r"\s*([+*-])\s*"
+# print(re.split(reg, s))
+#
+#
+# a = "08-08-2021"
+# pattern = r"(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19\d\d|20[0-9][0-9])"
+# print(re.findall(pattern, a))
+# print(re.search(pattern, a).group())
+# m = re.search(pattern,a))
+# print(m([0]))
+# print(m([1]))
+# print(m([2]))
+# print(m([3]))
+#
+# s = "Самолет прилетает 10/23/2024. Будем рады вас видеть после 10/24/2024" № 23.10.2024
+# reg = r"(\d{2})/(\d{2})/(\d{4})"
+# print(re.sub(reg, r"\2.\1.\3", s))
+#
+#
+# s = "yandex.com and yandex.com.ru"
+# reg = r"((a-z0-9-]{2,}\.)+[a-z]{2,4})"
+# print(re.sub(reg, r"http://\1", s))
+#
+#
+# # Рекурсия
+#
+# def elevator(n)  # 5
+#     if n == 0:
+#         print("Вы в подвале")
+#         return
+#     print("=>", n)
+#     elevator(n - 1) # стек: 5 4 3 2 1
+#     print(n, end=" ")
+#
+#
+#
+# n1 = int(input("На каком вы этаже: "))  # 5
+# elevator(n1)
+#
+#
+#
+# def = sum_lst(lst):
+#       res = 0
+#       for i in lst:
+#           res += 1
+#       return res
+#
+#
+# def = sum_lst(lst):  # [3, 5, 7, 9]
+#       if len(lst) == 1:
+#       print(lst, "=> lst[0]:", lst[0])
+#          return lst[0]  # 9
+#       else:
+#           print(lst, "=> lst[0]:", lst[0])
+#           return lst[0] + sum_list(lst[1:]) # 1 + 3 + 5 + 7 +
+#
+#
+# print(sum_lst[1, 3, 5, 7, 9])) # 25
+#
+#
+#
+# def to_str(n, base):  # n = 3
+#     convert = "012345679ABCDEF"
+#     if n < base:
+#          return convert[n] # convert[3] => '3'
+#     else:
+#         return to_str(n // base, base) + convert[n % base]  #  convert[5] => [4 остаток] => '5' + '4'
+#
+#
+# print(to_str(354, 10))
+#
+#
+# def count_items(item_list):
+#     count = 0
+#     for item in item_list:
+#         if isinstance(item, list):
+#            count += item_list(item)
+#         else:
+#             count += 1
+#      return count
+#
+#
+# names = ['Adam', ['Bob', ['Chat', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], "Ann"]
+# print(names)
+# print(len(names))
+# print(isinstance(names, list))
+# print(isinstance(names[0], list))
+# print(isinstance(names[1][0][0], list))
+#
+# print(count_items(names))
+#
+#
+# def remove(text):
+#     if not text:
+#          return ""
+#     if text[0] == "\n" or text[0] == " ":
+#        return remove(text[1])
+#     else:
+#         return text[0] + remove(text[1:])
+#
+#
+#
+# print(remove("Hello\nWord"))
+#
+#
+# print(bool(""))
+#
+#
+#
+# 31.03.
 
+# f = open("test.txt", "r")
+# f = open("test.txt", "r")
+# print(f)
+# print(*f)
+# print(f.mode)
+# print(f.name)
+# print(f.encoding)
+# print(f.closed)
+# f.close()
+
+# f = open("test.txt", "r")
+# print(f.read(3))
+# print(f.read())
+# f.close()
+#
+#
+# f = open("test.txt", "r")
+# print(f.read())
+# f.close()
+#
+#
+# f = open("test1.txt", "r")
+# print(f.readline())
+# print(f.readline(8))
+# print(f.readline())
+# print(f.readline())
+# f.close()
+#
+#
+# f = open("test1.txt", "r")
+# print(f.readline(26))
+# print(f.readline())
+# f.close()
+#
+#
+# f = open("test1.txt", "r")
+# print("count =", len(f.readlines()))
+# f.close()
+#
+#
+#
+# f = open("test1.txt", "r")
+# count = 0
+# for line in f:
+#     print(line)
+#     count += 1
+# f.close()
+# print("count =", count)
+#
+#
+# f = open("xyz.txt", "w")
+# f.write("Hello\nWorld!")
+# f.close()
+#
+#
+# f = open("xyz1.txt", "a")
+# f.write("\nNew text")
+# f.close()
+#
+# line = ['This is line 1\n', 'This is line 2\n']
+# f = open("xyz.txt", "w")
+# f.writelines(line)
+# f.close()
+#
+#
+#
+# lst = [i for i in range(1, 20)]
+# print(lst)
+#
+# f = open("xyz.txt", "w")
+# for index in lst:
+# f.write("\t".join(map(str, lst)))
+# f.close()
+#
+#
+#
+# f = open("xyz.txt", "w")
+# d = f.read()
+# st = list(map(int, d.split("\t")))
+# print(st)
+# print(type(st[0]))
+# f.close()
+#
+#
+# file = "text2.txt"
+#
+# f = open(file, "w")
+# f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+# f.close()
+#
+#
+# f = open(file, "r")
+# read_line = f.readlines()
+# print(read_line)
+# read_line[1] = "Hello world!"
+# print(read_line)
+# f.close()
+#
+# f = open(file, "w")
+# f.writelines(read_line )
+# f.close()
+#
+#
+#
+#
+# file = "text2.txt"
+#
+# f = open(file, "w")
+# f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+# f.close()
+#
+#
+# f = open(file, "r")
+# s = f.writelines()
+# f.close()
+# print(s)
+#
+# pos = int(input("pos = "))
+# if 0 <= pos < len(s):
+#      del s[pos]
+# else:
+#     print("Индекс введен неверно")
+# print(s)
+#
+#
+# f = open(file, "w")
+# f.writelines(s)
+# f.close()
+#
+#
+#
+# f = open("test.txt")
+# print(f.read(3))
+# print(f.tell()) # позиция условного курсора
+# print(f.seek(1)) # перемещение условного курсора в заданную позицию
+# print(f.read())
+# print(f.tell())
+# f.close()
+#
+#
+#
+# f = open("test.txt", "r+")
+# f.write("I am learning Python")
+# print(f.seek(3))
+# f.write("-new string-")
+# f.close()
+#
+#
+#
+#
+# f = open("test45.txt", "a+")
+# f.write("I am learning Python")
+# print(f.seek(3))
+# f.write("-new string-")
+# f.close()
+#
+#
+#
+# with open('test.txt', "w") as f:
+#     print(f.write('012\n34567\n89'))
+# print(f.closed)
+#
+#
+#
+# with open('test.txt', "w") as f:
+#     for line in f:
+#         print(line[:2])
+#
+#
+# # Файл (англ. file) — именованная область данных на носителе
+# # информации, используемая как базовый объект взаимодействия с данными
+# #  в операционных системах.
+#
+# def longest_words(file):
+#     with open(file, "r") as text:  # , encoding="utf-8
+#          w = text.read().split()
+#          print(w)
+#          max_lenght = len(max(w, key=len))
+#          res = [word for word in w if len(word) == max_length]
+#          print(max_lenght)
+#          if len(res) == 1:
+#             retutn res[0]
+#          return res
+#
+#
+# print(longest_words('test.txt'))
+#
+#
+#
+# one = "one.txt"
+# two = "two.txt"
+#
+#
+# text = "Строка №1\nСтрока №2\n"Строка №3\n"Строка №4\n"Строка №5\n"Строка №6\n"Строка №7\nСтрока №8\n"Строка №9
+# \n"Строка №10\n"
+# with open(one, 'w') as f:
+#     f.write(text)
+#
+#
+# with open(one,"r") as fr, open(two, "w") as fw:
+#      for line in fr:
+#          line = line.replace("Строка", "Линия -")
+#          tw.write(line)
+#
+# one = "one.txt"
+# two = "two.txt"
+# three.txt = "three.txt"
+#
+# with open(one, "r") as f1:
+#     a = f1.read()
+#     print(a)
+#
+# with open(two, "r") as f2:
+#     b = f2.read()
+#     print(b)
+#
+# c = a + b
+# print(c)
+#
+#
+# with open(three, "w") as f3:
+#     f3.writelines(c)
+#
+#
+#
+# with open(one, "r") as f1, open(two, "r") as f2, open(three, "w") as f3:
+#     a = f1.readlines()
+#     b = f2.readlines()
+#     c = []
+#     for i in range(len(a)):
+#         c.append(a[i])
+#         c.append(b[i])
+#     print(a)
+#     print(b)
+#     print(c)
+#     f3.writelines(c)
 
 
