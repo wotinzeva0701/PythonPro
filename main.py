@@ -760,3 +760,358 @@
 #     f3.writelines(c)
 
 
+
+# Модули OS и OS.PATH
+#
+# import os
+#
+# дописать
+
+#
+# for root, dirs, fils in os.walk("nested1", topdown=False):
+#     print("Root:", root)
+#     print("\tSubdirs:", dirs)
+#     print("\tFiles:", files)
+#
+#
+# def remove_empty_dirs(root_tree):
+#     print(f"Удаление пустых директорий в ветви {root_tree}")
+#     print("-" * 50)
+#     for root, dirs files in os.walk(root_tree):
+#         if not os.listdir(root):
+#             os.rmdir(root)
+#         print(f"Директория {root} удалена")
+#     print("-" * 50)
+#
+#
+# remove_empty_dirs("nested1")
+#
+#
+#
+# dirs = [r'Work\F1', r'Work\F2\F21']
+# for d in dirs:
+#     os.makedirs(d)
+#
+# files = {
+#     'Work': ['w.txt'],
+#      r'Work\F1': ['f11.txt', 'f12.txt', 'f13.txt'],
+#      r'Work\F2\F21': ['f11.txt', 'f12.txt']
+# }
+#
+# for d, f in files.items():
+#     for file in f:
+#         file_path = os.path.join(d, file)
+#         open(file_path, "w").close()
+#
+# files_with_text = [r'Work\w.txt', r'Work\F1\f12.txt', r'Work\F2\F21\f211.txt', r'Work\F2\F21\f212.txt']
+#
+# for file in files_with_text:
+#     with open(file, 'w') as f:
+#          f.write(f"Текст для файла {file}")
+
+#
+# def print_tree(root, topdown):
+#     print(f"Обход {root} {'Сверху вниз' if topdown else 'снизу вверх'}")
+#     for root, dirs, files in os.walk(root, topdown):
+#
+#           print(root)
+#           print(dirs)
+#           print(files)
+#     print("-" * 50)
+#
+#
+# print_tree("Work", False)
+# print_tree("Work", True)
+#
+#
+# print(os.path.exists(r"D:\Python318\318\nested1\nested2\nested3\text.txt"))  # возвращает True если путь существует в
+# # файловой системе
+
+#
+# import time
+#
+# path = "main.ry"
+# print(os.path.getsize(path) / 1024) # размер файла 81693 байт(79.826171875 КB)
+#
+#
+# print(os.path.getctime(path)   #  время создания файла
+# print(os.path.getctime(path)   #  время последнего доступа к файлу
+# print(os.path.getctime(path)   #  время последнего изменения файла (в секундах)
+#
+#
+# time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getmtime(path)))
+# time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getmtime(path)))
+#
+#
+# print(os.path.isdir(r"D:\Python318\318\nested1\nested2\nested3"))
+# print(os.path.isfile(r"D:\Python318\318\nested1\nested2\nested3\text.txt"))
+
+
+
+# class Point:
+
+#     """Класс для представления координат точек на плоскости"""
+#     x = 1
+#     y = 1
+#
+#
+# p1 = Point()
+# p1.x = 5
+# p1.y = 10
+# p1.z = 30
+# print(p1.x)
+# print(p1.y)
+# print(p1.__dict__)
+#
+#
+# p2 = Point()
+# print(p2.x)
+# print(p2.y)
+# print(p2.__dict__)
+#
+#
+# print(id(Point))
+# print(id(p1))
+# print(id(p2))
+#
+#
+# print(Point.__dict__)
+# print(Point.__doc__)
+
+#
+# домашняя работа
+# import os
+#
+# dir_name = "nested1"
+#
+# objs = os.listdir(dir_name)
+# print(objs)
+#
+# for obj in objs:
+#     p = os.path.join(dir_name, obj)
+#     print(p)
+#     if os.path.isfile(p):
+#         print(f"{obj} - file - {os.path.getsize(P)} bytes")
+#
+#     elif os.path.isdir(p):
+#         print(f"{obj} - dir")
+#
+# 7.04
+#
+#
+# class Point:
+#     x = 1
+#     y = 1
+#
+#     def set_coord(self, x, y):
+#         self.x = x
+#         self.y = y
+#         print(self.__dict__)
+#
+#
+# p1 = Point()
+# p1.x = 5
+# p1.y = 10
+# p1.set_coord()
+# Point.set_coord(5, 10)
+#
+# p2 = Point()
+# p2.x = 3
+# p2.y = 7
+# p2.set_coord(3, 7)
+
+
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print("Персональные данные ".center(48, "*"))
+#         print(f"Имя: {self.name}\nДата рождения: {self.birthday}\nНомер телефона: {self.phone}\n"
+#               f"Страна: {self.country}\nГород: {self.city}\nДомашний адрес: {self.address}")
+#         print("=" * 40)
+
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):  # устанавливаем новое имя
+#         self.name = name  # получаем имя
+#
+#     def get_name(self):
+#         return self.name
+#
+#     def set_birthday(self, value):
+#         self.birthday = value
+#
+#     def set_birthday(self):
+#         return self.birthday
+#
+#
+# h1 = Human()
+# h1.print_info()
+# h1.input_info("Юля", "23.05.1986", "Россия", "Москва", "Чистопрудный бульвар, 1А")
+# h1.print_info()
+# h1.set_name("Юлия")
+# print(h1.get_name)
+# h1.set_birthday("25.05.1986")
+# print(h1.get_birthday())
+# #
+#
+# class Person:
+#     skill = 10  # статические свойства
+#
+#
+# def __init__(self, name, surname):  Инициализатор
+#
+#
+# self.name = name  # динамические свойства
+# self.surname = surname
+# print("Инициализатор Person")
+# value = 5
+#
+#
+# def __del__(self):
+#     print("Удаление экземпляра класса")
+#
+#
+# def print_info(self, name, surname):
+#     self.name = name
+#     self.surname = surname
+#     print("Данны о сотрудника:", self.name, self.surname)
+#
+#
+# def add_skill(self, k):
+#     self.skill += k
+#     print("Квалификация сотрудника:", self.skil, end="\n\n")
+#
+#
+# p1 = Person()
+# p1.print_info("Виктор", "Резник")
+# p1.add_skill(3)
+#
+# p2 = Person()
+# p2.print_info("Анна", "Долгих")
+# p2.add_skill(2)
+#
+#
+# class Point:
+#     count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+#     def get_coord(self)
+#         print(self.__dict__)
+#
+#
+# p1 = Point(5, 10)
+# p1.get_coord()
+#
+# p2 = Point(3, 7)
+# p2.get_coord()
+#
+# p3 = Point(8, 16)
+# p3.get_coord()
+#
+# print(p1.count)
+# print(p2.count)
+# print(p3.count)
+#
+# print(Point.count)
+#
+#
+# class Robot:
+#     k = 0
+#
+#
+# def __init__(self, name):
+#     self.name = name
+#
+#
+# print("Инициализация робота:", self.name)
+# Robot.k += 1
+#
+#
+# def say_hi(self):
+#     print(f"Приветствую! Меня зовут:", self.name)
+#
+#
+# def __del__(self):
+#     print(self.name, "выключается!")
+#
+#
+# Robot.k -= 1
+#
+# if Robot.k == 0:
+#     print(self.name, "был последним")
+# else:
+#     print("Работающих роботов осталось:", Robot.k)
+#
+# droid1 = Robot("R2-02")
+# droid1.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid3 = Robot("ТО-Р30")
+# droid3.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n")
+#
+# print("Роботы закончили свою работу. Давайте их выключим.")
+#
+# del droid1
+# del droid2
+# del droid3
+#
+# print("Численность роботов:", Robot.k)
+#
+#
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def say_hi(self):
+#         print(f"Приветствую! Меня зовут:", self.name)
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#
+#         if Robot.k == 0:
+#             print(self.name, "был последним")
+#         else:
+#             print("Работающих роботов осталось:", Robot.k)
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n")
+#
+# print("Роботы закончили свою работу. Давайте их выключим.")
+#
+# print("Численность роботов:", Robot.k)
