@@ -2265,86 +2265,67 @@
 
 # Число секунд в одном дне: 24 * 60 * 60 = 86400
 #
-class Clock:
-    __DAY = 86400  # Число секунд в дне
-
-    def __init__(self, sec: int):
-        if not isinstance(sec, int):
-            raise ValueError("Секунды должны быть целым числом")
-        self.sec = sec % self.__DAY
-
-    def get_format_time(self):
-        s = self.sec % 60
-        m = (self.sec // 60) % 60
-        h = (self.sec // 3600) % 24
-        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
-
-    @staticmethod
-    def __get_form(x):
-        return str(x) if x > 9 else "0" + str(x)
-
-    def __add__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec + other.sec)
-
-    def __sub__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec - other.sec)
-
-    def __mul__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec * other.sec)
-
-    def __floordiv__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec // other.sec)
-
-    def __mod__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec % other.sec)
-
-  
-
-
-c1 = Clock(100)
-c2 = Clock(200)
-print(c1.get_format_time())
-print(c2.get_format_time())
-c3 = c1 + c2
-print(c3.get_format_time())
-c4 = Clock(300) + c3
-print(c4.get_format_time())
-c5 = c4 - c2
-print(c5.get_format_time())
-c6 = c5 * c2
-print(c6.get_format_time())
-c7 = c6 // c2
-print(c7.get_format_time())
-c8 = c7 % c2
-print(c8.get_format_time())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# class Clock:
+#     __DAY = 86400  # Число секунд в дне
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#         self.sec = sec % self.__DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec + other.sec)
+#
+#     def __sub__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec - other.sec)
+#
+#     def __mul__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec * other.sec)
+#
+#     def __floordiv__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec // other.sec)
+#
+#     def __mod__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec % other.sec)
 #
 #
+# c1 = Clock(100)
+# c2 = Clock(200)
+# print(c1.get_format_time())
+# print(c2.get_format_time())
+# c3 = c1 + c2
+# print(c3.get_format_time())
+# c4 = Clock(300) + c3
+# print(c4.get_format_time())
+# c5 = c4 - c2
+# print(c5.get_format_time())
+# c6 = c5 * c2
+# print(c6.get_format_time())
+# c7 = c6 // c2
+# print(c7.get_format_time())
+# c8 = c7 % c2
+# print(c8.get_format_time())
+
 # c1 = Clock(80000)
 # print(c1.get_format_time())
 #
@@ -2714,3 +2695,393 @@ print(c8.get_format_time())
 #
 # p1 = Person("Виталий", "Карасев")
 # p1.info()
+
+# def decorator(cls):
+#     class Wrapper(cls):
+#         def doubler(self, value):
+#             return value * 2
+#     return Wrapper
+#
+#
+# @decorator
+# class ActualClass:
+#     def __init__(self):
+#         print("Init ActualClass")
+#
+#     def quad(self, value):
+#         return value * 4
+#
+#
+# obj = ActualClass()
+# print(obj.quad(4))
+# print(obj.doubler(4))
+
+
+# Дескриптор
+
+# class Person:
+#     def __init__(self, name, surname):
+#         self.__name = name
+#         self.__surname = surname
+#
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, value):
+#         if isinstance(value, str):
+#             raise TypeError(f"{value} должно быть строкой")
+#         self.__name = value
+#
+#     @property
+#     def surname(self):
+#         return self.__surname
+#
+#
+#     @name.setter
+#     def surname(self, value):
+#         if isinstance(value, str):
+#             raise TypeError(f"{value} должно быть строкой")
+#         self.__name = value
+
+#
+#     @property
+#     def surname(self):
+#         return self.__surname
+#
+#
+#     @name.setter
+#     def surname(self, value):
+#         if isinstance(value, str):
+#             raise TypeError(f"{value} должно быть строкой")
+#         self.__surname = value
+
+
+# class String:
+#     def __init__(self, value):
+#         if value:
+#             self.set(value)
+#
+#     def set(self, value):
+#         if not isinstance(value, str):
+#             raise TypeError(f"{value} должны быть строкой")
+#         self.__value = value
+#
+#     def get(self):
+#         return self.__value
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.__name = String(name)
+#         self.__surname = String(surname)
+#
+#
+# p = Person(12, "Petrov")
+# p.name.set("Petr")
+# print(p.name.get())
+
+
+# class ValidString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if not isinstance(value,str):
+#             raise ValueError(f"{self.__name}  должно быть строкой")
+#         isinstance.__dict__[self.__name] = value
+#
+# class Person:
+#     firs_name = ValidString()
+#     surname = ValidString()
+#
+#     def __init__(self, first_name, surname):
+#         self.first_name = first_name
+#         self.surname = surname
+#
+#
+# p = Person("Ivan", "Petrov")
+# p.surname = "Sidorov"
+# print(p.first_name)
+# print(p.surname)
+
+
+# class Integer:
+#     @staticmethod
+#     def verify_coord(coord):
+#         if not isinstance(coord, int):
+#             raise ValueError(f"Координата {coord} должно быть целым числом")
+#
+#     def __set_name__(self, owner, name):
+#         self.__name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         # return instance.__dict__[self.__name]
+#         return getattr(instance, self.__name)
+#
+#     def __set__(self, instance, value):
+#         self.verify_coord(value)
+#         # instance.__dict__[self.__name] = value
+#         setattr(instance, self.__name, value)
+#
+#
+#
+# class Point3D:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3D(1, 2, 3)
+# print(p1.__dict__)
+
+# Метаклассы
+
+# a = 5
+# print(type(a))
+# print(type(int))
+
+# class MyList(list):
+#     def get_length(self):
+#         return len(self)
+#
+#
+# MyList = type(
+#      'MyList',
+#      (list,),
+#      dict(get_length=lambda self: len(self))
+#
+# )
+#
+#
+# lst = MyList()
+# lst.append(5)
+# lst.append(7)
+# lst.append(9)
+# print(lst, lst.get_length())
+
+# Создание модулей
+
+# import math
+# import random
+
+# import geometry.rect
+# import geometry.sq
+# import geometry.trian
+#
+# r1 = geometry.rect.Rectangle(1, 2)
+# r2 = geometry.rect.Rectangle(3, 4)
+#
+# s1 = geometry.sq.Square(10)
+# s2 = geometry.sq.Square(20)
+#
+# t1 = geometry.trian.Triangle(1, 2, 3)
+# t2 = geometry.trian.Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.get_perimeter())
+
+
+# from geometry import rect, sq, trian
+
+# from geometry import *
+
+#
+# def run():
+#     r1 = rect.Rectangle(1, 2)
+#     r2 = rect.Rectangle(3, 4)
+#
+#     s1 = sq.Square(10)
+#     s2 = sq.Square(20)
+#
+#     t1 = trian.Triangle(1, 2, 3)
+#     t2 = trian.Triangle(4, 5, 6)
+#
+#     shape = [r1, r2, s1, s2, t1, t2]
+#
+#     for g in shape:
+#         print(g.get_perimeter())
+#
+#
+# if __name__ == '__main__':
+#     run()
+
+
+# from car import electrocar
+# from car.electrocar import ElectroCar
+
+# e_car = electrocar.ElectroCar ("Tesla", "T", 2018, 99000)
+# e_car = ElectroCar ("Tesla", "T", 2018, 99000)
+# e_car.show_car()
+# e_car.description_battery()
+
+
+# Упаковка данных(сериализация)
+# Распаковка данных(десериализация)
+
+# marshal (.рус)
+# pickle
+# json
+
+# dump() сохраняет данные в открытый файл
+# dumps()сохраняет данные в строку
+#
+# load() считывает данные из открытого файла
+# loads()считывает данные из строки
+
+
+# import pickle
+#
+# file_name = "basket.txt"
+#
+# shop_list = {
+#     "фрукты": ["яблоки", "груши"],
+#     "овощи": ("морковь",),
+#     "бюджет": 1000
+# }
+#
+# with open(file_name, "wb") as f:
+#     pickle.dump(shop_list, f)
+#
+#
+# with open(file_name, "rb") as f:
+#     shop_list_2 = pickle.load(f)
+#
+#
+# print(shop_list_2)
+#
+# import pickle
+# class Test:
+#     num = 35
+#     string = "Привет"
+#     lst = [1, 2, 3]
+#     tpl = (25, 98)
+#
+#     def __str__(self):
+#         return f"Число: {Test.num}\nСтрока: {Test.string}\nСписок: {Test.lst}\nКортеж{Test.tpl}"
+#
+#
+# obj = Test()
+#
+# my_obj = pickle.dumps(obj)
+# print(my_obj)
+#
+# new_obj = pickle.loads(my_obj)
+# print(new_obj
+
+#
+# class Test2:
+#     def __init__(self):
+#         self.a = 35  # тип данных int
+#         self.b = "test"  # тип данных str
+#         self.c = lambda x: x * x
+#
+#     def __str__(self):
+#         return f"{self.a} {self.b} {self.c(2)}"
+#
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         return attr
+#
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#
+#
+# item1 = Test2()
+# # print(item1) # 35 test 4
+# item2 = pickle.dumps(item1)
+# print(item2)
+# item3 = pickle.loads(item2)
+# print(item3)
+
+# import json
+#
+# data = {
+#     'name': 'Olga',
+#     'age': 20,
+#     20: None,
+#     1: True,
+#     False: 0,
+#     'hobbies': ('running', 'singing'),
+#     'children': {
+#         'first_name': ['Alice', 'Bob'],
+#         'age': [6, 12]
+#     }
+# }
+#
+# with open("data_file.json", "w") as f:
+#     json.dump(data, f, indent=4)
+#
+#
+# with open("data_file.json", "r") as f:
+#     data2 = json.load(f)
+#
+# print(data2)
+
+# json_string = json.dumps(data)
+# print(json_string)
+# print(type(json_string))
+#
+# data3 = json.loads(json_string)
+# print(data3)
+# print(type(data3))
+
+
+# x = {"name": "Виктор"}
+# a = json.dumps(x)
+# print(a)
+# b = json.dumps(x, ensure_ascii=False)
+# print(b)
+# print(json.loads(a))
+#
+import json
+from random import choice
+
+
+def gen_person():
+    name = ''
+    tel = ''
+
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
+    while len(name) != 7:
+        name += choice(letters)
+
+    while len(tel) != 10:
+        tel += choice(nums)
+
+    person = {
+        'name': name,
+        'tel': tel
+    }
+    return person
+
+
+def write_json(person_dict):
+    try:
+        data = json.load(open('persons.json'))
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+
+    data[len(data)+1] = person_dict
+    with open('persons.json', 'w') as f:
+        json.dump(data, f, indent=2)
+
+
+for _ in range(5):
+    write_json(gen_person())
