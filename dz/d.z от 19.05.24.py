@@ -1,19 +1,15 @@
 import requests
-import json
+import csv
 
 response = requests.get("https://jsonplaceholder.typicode.com/todos")
-print(response.text)
-print(type(response.text))
-todos = json.loads(response.text)
-print(type(todos[0]))
+data = response.json()
 
-todos_by_user = {}
+with open("dict_new.csv", "w") as f:
+    writer = csv.DictWriter(f, delimiter=";", lineterminator="\n", fieldnames=list(data[0].keys()))
+    writer.writeheader()
+    for d in data:
+        writer.writerow(d)
 
-for todo in todos:
-    if todo["completed"]:
-        try:
-            todos_by_user[todo["userId"]] += 1
-        except KeyError:
-            todos_by_user[todo["userId"]] = 1
 
-print(todos_by_user)
+
+

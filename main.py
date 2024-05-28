@@ -1,5 +1,5 @@
 # print("Вносим изменения"
-import csv
+# import csv
 
 # print("Данные переносим на GitHub!")
 
@@ -3095,13 +3095,11 @@ import csv
 #         self.name = name
 #         self.marks = marks
 #
-#     def __str__(self):
-        # st = ''
-        # for i in self.marks:
-        #     st += str(i) + ', '
-        # return f"{self.name}: {st[:-2]}"
-#         st = ", ".join(map(str, self.marks))
-#         return f"{self.name}: {st}"
+# def __str__(self):
+#     st = ''
+# for i in self.marks:
+#     st += str(i) + ', '
+# return f"{self.name}: {st[:-2]}"
 #
 #     def add_mark(self, new_mark):
 #         self.marks.append(new_mark)
@@ -3295,8 +3293,8 @@ import csv
 # file = 'list_capital.json'
 # index = ''
 # while index != '6':
-#     index = input("Действие:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n4 - редактирование данных\n"
-#                   "5 - просмотр данных\n6 - завершение работы\nВвод: ")
+# index = input("Действие:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n4 - редактирование данных\n"
+#               "5 - просмотр данных\n6 - завершение работы\nВвод: ")
 #     if index == "1":
 #         CountryCapital.add_country(file)
 #     if index == "2":
@@ -3432,4 +3430,120 @@ import csv
 #
 # print(list(data[0].keys()))
 
+# from bs4 import BeautifulSoup
+#
+#
+# f = open('index.html').read()
+# soup = BeautifulSoup(f, "html.parser")
+# row = soup.find("div", class_="row")
+# row = soup.find("div", {class: "row"})
+# row = soup.find_all("div", class_="row")[1].find("div", class_="name").text
+# row = soup.find_all("div", {"data-set": "salary"})
+# row = soup.find("div", string="Alena").parent
+# row = soup.find("div", string="Alena").find_parent(class_="row")
+# row = soup.find("div", id="whois3")
+# row = soup.find("div", id="whois3").find_next_sibling()
+# row = soup.find("div", id="whois3").find_previous_sibling()
+# print(row)
 
+#
+# from bs4 import BeautifulSoup
+#
+#
+# def get_copywriter(tag):
+#     whois = tag.find('div', class_="whois").text
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+#
+# f = open('index.html').read()
+# soup = BeautifulSoup(f, "html.parser")
+#
+# copywriter = []
+# row = soup.find_all("div", class_="row")
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+#
+# print(copywriter)
+
+# from bs4 import BeautifulSoup
+# import re
+#
+#
+# def get_salary(s):
+#     pattern = r"\d+"
+#     # res = re.findall(pattern, s)[0]
+#     res = re.search(pattern, s).group()
+#     print(res)
+#
+#
+# f = open('index.html').read()
+# soup = BeautifulSoup(f, "html.parser")
+# salary = soup.find_all("div", {"data-set": "salary"})
+# print(salary)
+# for i in salary:
+#     get_salary(i.text)
+
+
+# import requests
+#
+#
+# r = requests.get("https://ru.wordpress.org/")
+# print(r)
+# print(r.status_code)
+# print(r.headers)
+# print(r.content)
+# print(r.text)
+
+import csv
+
+import requests
+from bs4 import BeautifulSoup
+import re
+
+
+def get_html(url):
+    r = requests.get(url)
+    return r.text
+
+
+def refined(s):
+    res = re.sub(r"\D+", "", s)
+    return res
+
+
+def write_csv(data):
+    with open("plugins.csv", "a") as f:
+        writer = csv.writer(f, lineterminator="\r", delimiter=";")
+        writer.writerow((data['name'], data['url'], data['rating']))
+
+
+def get_data(html):
+    soup = BeautifulSoup(html, "lxml")
+    p1 = soup.find_all("section", class_="plugin-section")[1]
+    plugins = p1.find_all("div", class_="entry")
+
+    for plugin in plugins:
+        name = plugin.find("h3").text
+        url = plugin.find("h3").find("a").get("href")
+        rating = plugin.find("span", class_="rating-count").text
+        r = refined(rating)
+        data = {'name': name, 'url': url, 'rating': r}
+        write_csv(data)
+
+
+def main():
+    url = "https://ru.wordpress.org/plugins/"
+    (get_data(get_html(url)))
+
+
+if __name__ == '__main__':
+    main()
+
+import requests
+from bs4 import BeautifulSoup
+
+import csv
