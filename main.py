@@ -3587,8 +3587,8 @@
 # if __name__ == '__main__':
 #     main()
 
-
-import csv
+#
+# import csv
 #
 # import requests
 # from bs4 import BeautifulSoup
@@ -3669,3 +3669,180 @@ import csv
 #
 # if __name__ == '__main__':
 #     main()
+import csv
+
+#
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def main():
+#     for i in range(2, 3):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refine_cy(s):
+#     return s.split()[-1]
+#
+#
+# def write_csv(data):
+#     with open("plugins1.csv", "a") as f:
+#         writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#         writer.writerow((data['name'], data['url'], data['active'], data['cy']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     elements = soup.find_all("div", class_="plugin-card")
+#     for el in elements:
+#         try:
+#             name = el.find("h3", class_="entry-title").text
+#         except AttributeError:
+#             name = ""
+#
+#         try:
+#             url = el.find("h3", class_="entry-title").find('a')["href"]
+#         except AttributeError:
+#             url = ""
+#
+#         try:
+#             active = el.find("span", class_="active-installs").text.strip()
+#         except AttributeError:
+#             active = ""
+#
+#         try:
+#             c = el.find("span", class_="tested-with").text.strip()
+#             cy = refine_cy(c)
+#         except AttributeError:
+#             cy = ""
+#
+#         data = {
+#             'name': name,
+#             'url': url,
+#             'active': active,
+#             'cy': cy
+#         }
+#         write_csv(data)
+#
+#
+# if __name__ == '__main__':
+#     main()
+#
+#
+#
+# class Parser:
+#     def __init__(self, url, path):
+#         self.url = url
+#         self.path = path
+#
+#     def get_html(self):
+#         req = requests.get(self.url).text
+#         print(req)
+#
+
+#
+# def main():
+#     pars = Parser("https://www.ixbt.com/live/index/news/", "news.txt"):
+#     pars.get_html = BeautifulSoup(reg, "lxml")
+#
+#
+# def parsing(self):
+#     news = self.html.find_all("div", class_="caption")
+#     for item in news:
+#         title = item.find('h3').text
+#         href = item.find('a').get('href')
+#         author = item.find("a", class_="topic-info-author-link").text.strip()
+#         self.res.append({
+#             "title": title,
+#             "href": href,
+#             "author": author,
+#         })
+#     print(self.res)
+#
+#
+# def save(self):
+#     with open(self.path, "w") as f:
+#         i = 1
+#         for item in self.res:
+#             f.write(f"Новость № {i}\n\nНазвание: {item['title']}\nСсылка: {item['href']}\nАвтор: "
+#                     f"{item['author']}\n\n{'*' * 40}\n")
+#             i += 1
+#
+#
+# def run(self):
+#     self.get_html()
+#     self.parsing()
+#     self.save()
+#
+
+#
+# class Controller:
+#     def __init__(self):
+#         self.article_model = None
+#         self.user_interface = None
+#
+#     def run(self):
+#         answer = None
+#         while anwer != "q":
+#             answer = self.user_
+#
+#
+# from controller import Controller
+#
+#
+# def main():
+#     app = Controller()
+#     app.run()
+#
+#
+# if __name__ == '__main__':
+#     main()
+#
+#
+# class UserUnterface:
+#     def wait_user_answer(self):
+#         print("Ввод пользовательских данных ".center(50, "="))
+#         print("Действия со статьями:")
+#         print("q - выход из программы ")
+#         user_answer = input("Выберите вариант действия: ")
+#         print("=" * 50)
+#         return user_answer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
