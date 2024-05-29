@@ -3498,52 +3498,174 @@
 # print(r.content)
 # print(r.text)
 
+# import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     res = re.sub(r"\D+", "", s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open("plugins.csv", "a") as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section", class_="plugin-section")[1]
+#     plugins = p1.find_all("div", class_="entry")
+#
+#     for plugin in plugins:
+#         name = plugin.find("h3").text
+#         url = plugin.find("h3").find("a").get("href")
+#         rating = plugin.find("span", class_="rating-count").text
+#         r = refined(rating)
+#         data = {'name': name, 'url': url, 'rating': r}
+#         write_csv(data)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     (get_data(get_html(url)))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     res = re.sub(r"\D+", "", s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open("market_data.csv", "a") as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['price']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "html.parser")
+#     products = soup.find_all("div", class_="catalog_element")
+#
+#     for product in products:
+#         name = product.find("div", class_="catalog_title").text
+#         url = product.find("a", class_="link catalog_image_link").get("href")
+#         price = product.find("span", class_="catalog_price").text
+#         refined_price = refined(price)
+#         data = {'name': name, 'url': url, 'price': refined_price}
+#         write_csv(data)
+#
+#
+# def main():
+#     url = "https://market-kirov.ru/"
+#     (get_data(get_html(url)))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
 import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def main():
+#     for i in range(2, 3):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refine_cy(s):
+#     return s.split()[-1]
+#
+#
+# def write_csv(data):
+#     with open("plugins1.csv", "a") as f:
+#         writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#         writer.writerow((data['name'], data['url'], data['active'], data['cy']))
+#
+#
 
-import requests
-from bs4 import BeautifulSoup
-import re
+# import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     elements = soup.find_all("div", class_="plugin-card")
+#     for el in elements:
+#         try:
+#             name = el.find("h3", class_="entry-title").text
+#         except AttributeError:
+#             name = ""
+#
+#         try:
+#             url = el.find("h3", class_="entry-title").find('a')["href"]
+#         except AttributeError:
+#             url = ""
+#
+#         try:
+#             active = el.find("span", class_="active-installs").text.strip()
+#         except AttributeError:
+#             active = ""
+#
+#         try:
+#             c = el.find("span", class_="tested-with").text.strip()
+#             cy = refine_cy(c)
+#         except AttributeError:
+#             cy = ""
+#
+#         data = {
+#             'name': name,
+#             'url': url,
+#             'active': active,
+#             'cy': cy
+#         }
+#         write_csv(data)
+#
+#
+# if __name__ == '__main__':
+#     main()
 
-
-def get_html(url):
-    r = requests.get(url)
-    return r.text
-
-
-def refined(s):
-    res = re.sub(r"\D+", "", s)
-    return res
-
-
-def write_csv(data):
-    with open("plugins.csv", "a") as f:
-        writer = csv.writer(f, lineterminator="\r", delimiter=";")
-        writer.writerow((data['name'], data['url'], data['rating']))
-
-
-def get_data(html):
-    soup = BeautifulSoup(html, "lxml")
-    p1 = soup.find_all("section", class_="plugin-section")[1]
-    plugins = p1.find_all("div", class_="entry")
-
-    for plugin in plugins:
-        name = plugin.find("h3").text
-        url = plugin.find("h3").find("a").get("href")
-        rating = plugin.find("span", class_="rating-count").text
-        r = refined(rating)
-        data = {'name': name, 'url': url, 'rating': r}
-        write_csv(data)
-
-
-def main():
-    url = "https://ru.wordpress.org/plugins/"
-    (get_data(get_html(url)))
-
-
-if __name__ == '__main__':
-    main()
-
-import requests
-from bs4 import BeautifulSoup
-
-import csv
+# from parsers import Parser
+#
+#
+# def main():
+#     pars = Parser("https://www.ixbt.com/live/index/news/", "news.txt")
+#     pars.run()
+#
+#
+# if __name__ == '__main__':
+#     main()
