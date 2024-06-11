@@ -3669,7 +3669,7 @@
 #
 # if __name__ == '__main__':
 #     main()
-import csv
+# import csv
 
 #
 # import requests
@@ -3814,7 +3814,7 @@ import csv
 #         print("=" * 50)
 #         return user_answer
 
-import sqlite3
+# import sqlite3
 
 # con = sqlite3.connect("profile.db")
 # cur = con.cursor()
@@ -3825,14 +3825,14 @@ import sqlite3
 # con.close()
 
 
-with sqlite3.connect("profile.db") as con:
-    cur = con.cursor()
-
-    cur.execute("""CREATE TABLE users(
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       name TEXT NOT NULL,
-       summa REAL,
-       date BLOB)""")
+# with sqlite3.connect("profile.db") as con:
+#     cur = con.cursor()
+#
+#     cur.execute("""CREATE TABLE users(
+#        id INTEGER PRIMARY KEY AUTOINCREMENT,
+#        name TEXT NOT NULL,
+#        summa REAL,
+#        date BLOB)""")
 
 
 
