@@ -1,0 +1,113 @@
+
+Таблица Client:
+INNClient - идентификационный номер клиента (первичный ключ)
+Client – клиент
+Status - место продажи
+
+Таблица ClientGoods:
+IDParty – (первичный ключ)
+ID – (внешний ключ)
+INNClient – идентификационный номер клиента (внешний ключ)
+CostUnit – стоимость за единицу 
+Count - количество приобретенного товара
+
+Таблица SallerGoods:
+ID – (первичный ключ)
+Code – код товара
+
+INNSeller – идентификационный код продавца (внешний ключ)
+DateStart – дата
+Goods – товар
+CostUnit – стоимость за единицу
+Count - количество товара на складе
+
+Таблица Seller:
+INNSeller - идентификационный код продавца (первичный ключ)
+Seller – посредник
+Status - статус
+
+
+
+1.Определить сколько наименований товара было куплено у посредников
+SELECT COUNT(DISTINCT Code) AS Number
+FROM SallerGoods;
+
+2.Определить минимальную цену за единицу проданного товара.
+
+SELECT MIN(CostUnit) AS MinPrice
+FROM SallerGoods
+
+
+3.Определите минимальную сумму на какую было закуплено товара.
+
+SELECT MIN(CostUnit * Count) AS Min
+FROM ClientGoods;
+
+4.Определить максимальную сумму за товар, проданный магазинам.
+
+SELECT MAX(CostUnit * Count) AS MaxPrice
+FROM SallerGoods;
+
+
+5.Определить со сколькими фирмами сотрудничает данная фирма.
+
+SELECT COUNT(DISTINCT INNSeller) AS Firms
+FROM SallerGoods;
+
+
+6.Определить минимальную сумму сделки по закупке товара у производителей.
+
+SELECT MIN(CostUnit * Count) AS MinPrice
+FROM ClientGoods
+
+
+7.Определить среднюю цену за пачку чая при покупке.
+
+SELECT AVG(cg.CostUnit) AS AverageTeaPrice
+FROM ClientGoods cg, SallerGoods sg
+WHERE cg.ID = sg.ID AND sg.Goods LIKE '%чай%';
+
+
+8.Определите максимальную сумму прибыли за товар, проданный посреднику.
+
+SELECT MAX((sg.CostUnit - sg.CostUnit*cg.CostUnit) * cg.Count) AS MaxPrice
+FROM ClientGoods cg, SallerGoods as sg ON cg.ID = sg.ID, Seller as s ON sg.INNSeller = s.INNSeller;
+
+
+9. Определите минимальную прибыль за товар, купленный у посредника.
+
+10.Какое количество наименований товара куплено у фирмы.
+
+SELECT c.Client, 
+    (SELECT s.Seller 
+    FROM Seller s 
+    WHERE s.INNSeller = sg.INNSeller) AS Seller, SUM(cg.Count) AS Count
+       FROM Client c, ClientGoods cg, SallerGoods sg
+       WHERE  c.INNClient = cg.INNClient AND cg.ID = sg.ID
+       GROUP BY c.Client, 
+           (SELECT s.Seller 
+           FROM Seller s 
+           WHERE s.INNSeller = sg.INNSeller
+           );
+
+
+11.Сколько в продаже видов печенья.
+
+SELECT COUNT(DISTINCT Goods) AS Cookie
+FROM SallerGoods;
+
+12.Какая максимальная сумма покупки, на которую клиент сделал заказ.
+
+SELECT MAX(CostUnit * Count) AS MaxPrice
+FROM ClientGoods;
+
+13.Определите среднюю прибыль от перепродажи масла.
+
+14.Со сколькими посредниками сотрудничает фирма.
+
+SELECT s.Seller, COUNT(DISTINCT SG.INNSeller) AS NumberPartners, s.Status AS Partner
+FROM Seller s, SallerGoods sg ON s.INNSeller = sg.INNSeller
+GROUP BY s.Seller,  s.Status
+
+
+

@@ -3835,5 +3835,127 @@
 #        date BLOB)""")
 
 
+# import sqlite3
+#
+#
+# with sqlite3.connect("user.db") as con:
+#     cur = con.cursor()
+
+# cur.execute("""
+# ALTER TABLE person
+# RENAME TO person_table;
+# """)
+
+# cur.execute("""CREATE TABLE IF NOT EXISTS person(
+#    id INTEGER PRIMARY KEY AUTOINCREMENT,
+#    name TEXT NOT NULL,
+#    phone BLOB NOT NULL DEFAULT "+79090000000",
+#    age INTEGER CHECK(age > 0 AND age < 100),
+#    email TEXT UNIQUE
+#    )""")
+#
+# cur.execute("""
+# ALTER TABLE person_table
+# ADD COLUMN address NOT NULL DEFAULT "Москва"
+# """)
+
+
+# cur.execute("""
+# ALTER TABLE person_table
+# DROP COLUMN address
+# """)
+
+# cur.execute("""
+# ALTER TABLE person_table
+# RENAME COLUMN address TO home_address
+# """)
+
+
+# import sqlite3
+#
+# with sqlite3.connect("db_3.db") as con:
+#     cur = con.cursor()
+#
+#     cur.execute("""
+#     SELECT *
+#     FROM T1
+#     LIMIT 2, 5
+#     """)
+
+# for i in cur:
+#     print(i)
+
+# res = cur.fetchone()
+# print(res)
+#
+# res2 = cur.fetchmany(2)
+# print(res2)
+
+# res3 = cur.fetchall()
+# print(res3)
+
+
+import sqlite3
+
+cars_list = [
+    ('BMW', 54000),
+    ('Chevrolet', 46000),
+    ('Daewoo', 36000),
+    ('Citroen', 29000),
+    ('Honda', 33000),
+]
+
+with sqlite3.connect("car.db") as con:
+    cur = con.cursor()
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS cars(
+       car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+       model TEXT,
+       price INTEGER
+    )
+    """)
+#
+#     cur.executescript("""
+#     DELETE FROM cars WHERE model LIKE 'B%';
+#     UPDATE cars SET price = price + 100;
+#     """)
+
+    # cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars_list)
+
+    # for car in cars_list:
+    #     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+
+    # cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+    # cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
+    # cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
+    # cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
+    # cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+
+# import sqlite3
+#
+# con = None
+# try:
+#     con = sqlite3.connect("car.db")
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#     car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     model TEXT,
+#     price INTEGER
+#     );
+#     BEGIN;
+#     INSERT INTO cars VALUES (NULL, 'Renault', 22000);
+#     UPDATE cars SET price = price + 100;
+#     """)
+#     con.commit()
+# except sqlite3.Error as e:
+#     if con:
+#         con.rollback()
+#     print("Ошибка выполнения запроса")
+# finally:
+#     if con:
+#         con.close()
+
+
 
 
