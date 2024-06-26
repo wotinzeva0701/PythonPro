@@ -3895,41 +3895,45 @@
 # print(res3)
 
 
-import sqlite3
-
-cars_list = [
-    ('BMW', 54000),
-    ('Chevrolet', 46000),
-    ('Daewoo', 36000),
-    ('Citroen', 29000),
-    ('Honda', 33000),
-]
-
-with sqlite3.connect("car.db") as con:
-    cur = con.cursor()
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS cars(
-       car_id INTEGER PRIMARY KEY AUTOINCREMENT,
-       model TEXT,
-       price INTEGER
-    )
-    """)
+# import sqlite3
+#
+# cars_list = [
+#     ('BMW', 54000),
+#     ('Chevrolet', 46000),
+#     ('Daewoo', 36000),
+#     ('Citroen', 29000),
+#     ('Honda', 33000),
+# ]
+#
+# with sqlite3.connect("car.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#        model TEXT,
+#        price INTEGER
+#     )
+#     """)
 #
 #     cur.executescript("""
 #     DELETE FROM cars WHERE model LIKE 'B%';
 #     UPDATE cars SET price = price + 100;
 #     """)
 
-    # cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars_list)
 
-    # for car in cars_list:
-    #     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+# cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars_list)
 
-    # cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
-    # cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
-    # cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
-    # cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
-    # cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+
+# for car in cars_list:
+#  cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+
+
+# cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+# cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
+# cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
+# cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
+# cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+
 
 # import sqlite3
 #
@@ -3957,5 +3961,201 @@ with sqlite3.connect("car.db") as con:
 #         con.close()
 
 
+# ORM (Object-Relational Mapping) - реляционное сопоставление объектов
+# SQLAlchemy ORM
+
+# import os
+#
+# from sqlalchemy import and_, or_, not_, desc, func,distinct
+#
+# from models.database import DATABASE_NAME, Session
+# import create_database as db_creator
+#
+# from models.lesson import Lesson, association_table
+# from models.student import Student
+# from models.group import Group
+#
+#
+# if __name__ == '__main__':
+#     db_is_created = os.path.exists(DATABASE_NAME)
+#     if not db_is_created:
+#         db_creator.create_database()
+#
+#     session = Session()
+# print(session.query(Lesson).all())
+# print("*" * 60)
+#
+# for it in session.query(Lesson):
+#     print(it)
+# print("*" * 60)
+
+# for it in session.query(Lesson):
+#     print(it.lesson_title)
+# print("*" * 60)
+
+# print(session.query(Lesson).count())
+# print("*" * 60)
+#
+# print(session.query(Lesson).first())
+# print("*" * 60)
+
+# for it in session.query(Lesson).filter(Lesson.id >= 3):
+#     print(it.lesson_title)
+# print("*" * 60)
+#
+# for it in session.query(Lesson).filter(and_(Lesson.id >= 3, Lesson.lesson_title.like('Ф%'))):
+#     print(it.lesson_title)
+# print("*" * 60)
+
+# for it in session.query(Lesson).filter(or_(Lesson.id >= 3, Lesson.lesson_title.like('Ф%'))):
+#     print(it.lesson_title)
+# print("*" * 60)
+#
+# for it in session.query(Lesson).filter(not_(Lesson.id >= 3), not_(Lesson.lesson_title.like('М%'))):
+#     print(it.lesson_title)
+# print("*" * 60)
+#
+# print(session.query(Lesson).filter(Lesson.lesson_title is not None).all())
+# print("*" * 60)
+#
+# print(session.query(Lesson).filter(Lesson.lesson_title.in_(['Математика', 'Линейная алгебра'])).all())
+#  print("*" * 60)
+
+# print(session.query(Lesson).filter(Lesson.lesson_title.notin_(['Математика', 'Линейная алгебра'])).all())
+# print("*" * 60)
+#
+# print(session.query(Student).filter(Student.age.between(16, 17)).all())
+# print("*" * 60)
+
+# print(session.query(Student).filter(not_(Student.age.between(17, 24))).all())
+# print("*" * 60)
+#
+# for it in session.query(Student).filter(Student.age.like("1%")).limit(4).offset(3):
+#     print(it)
+# print("*" * 60)
+
+# for it in session.query(Student).order_by(desc(Student.surname)):
+#     print(it)
+# print("*" * 60)
+#
+# for it in session.query(Student).join(Group).filter(Group.group_name == 'MDA-9'):
+#     print(it)
+# print("*" * 60)
+#
+# for it in session.query(func.count(Student.surname), Group.group_name).join(Group).group_by(Group.group_name):
+#     print(it)
+# print("*" * 60)
+
+# for it in session.query(func.count(Student.surname), Group.group_name).join(Group).group_by(Group.group_name)\
+#         .having(func.count(Student.surname) < 25):
+#     print(it)
+# print("*" * 60)
+#
+# for it in session.query(Student.age).filter(Student.age < 20).distinct():
+#     print(it)
+# print("*" * 60)
+
+# for it in session.query(Lesson):
+#     print(it)
+# print("*" * 60)
+
+# i = session.query(Lesson).first()
+# i.lesson_title = "Информатика"
+# session.add(i)
+# session.commit()
+
+# for it in session.query(Lesson):
+#     print(it)
+# print("*" * 60)
+
+# session.add(Lesson(lesson_title="Математика"))
+# session.commit()
+
+# i = session.query(Lesson).filter(Lesson.lesson_title == "Математика").first()
+# session.delete(i)
+# session.commit()
+
+# for it in session.query(Lesson):
+#     print(it)
+# print("*" * 60)
+
+# Шаблонизатор (Jinja)
+
+from jinja2 import Template
+
+# name = "Игорь"
+# age = 25
+#
+#
+#
+# tm = Template("Мне {{ a*2 }} лет. Меня зовут {{ n.upper() }}.")
+# msg = tm.render(n=name, a=age)
+#
+# print(msg)
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# per = Person("Игорь", 25)
+#
+# tm = Template("Мне {{ p['age'] }} лет. Меня зовут {{ p.get_name() }}.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Сочи'},
+#     {'id': 3, 'city': 'Минск'},
+#     {'id': 4, 'city': 'Ярославль'},
+#     {'id': 5, 'city': 'Смоленск'},
+# ]
+#
+# link = """<select name="cities">
+#     {% for c in cities -%}
+#         {% if c.id > 3 -%}
+#             <option value="{{ c['id'] }}">{{ c['city'] }}</option>
+#         {% elif c.city == "Москва" %}
+#             <option>{{ c['city'] }}</option>
+#         {% else -%}
+#             {{ c['city'] }}
+#         {% endif -%}
+#     {% endfor -%}
+# </select>"""
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
 
 
+
+new = [
+    {'id': 'index', 'text': 'Главная'},
+    {'id': 'news', 'text': 'Новости'},
+    {'id': 'about', 'text': 'О компании'},
+    {'id': 'shop', 'text': 'Магазин'},
+    {'id': 'contacts', 'text': 'Контакты'}
+]
+
+
+link = """<ul>
+{%- for c in new %}
+{%- if c['id'] == 'index' %}
+<li><a href="/{{ c['id'] }}" class="active">{{ c['text'] }}</a></li>
+{%- else %}
+<li><a href="/{{ c['id'] }}">{{ c['text'] }}</a></li>
+{%- endif %}
+{%- endfor %}
+</ul>"""
+
+tm = Template(link)
+msg = tm.render(new=new)
+
+print(msg)
