@@ -4081,7 +4081,7 @@
 
 # Шаблонизатор (Jinja)
 
-from jinja2 import Template
+# from jinja2 import Template
 
 # name = "Игорь"
 # age = 25
@@ -4108,7 +4108,7 @@ from jinja2 import Template
 # msg = tm.render(p=per)
 #
 # print(msg)
-
+#
 # cities = [
 #     {'id': 1, 'city': 'Москва'},
 #     {'id': 2, 'city': 'Сочи'},
@@ -4128,34 +4128,71 @@ from jinja2 import Template
 #         {% endif -%}
 #     {% endfor -%}
 # </select>"""
-#
+
 # tm = Template(link)
 # msg = tm.render(cities=cities)
 #
 # print(msg)
 
 
+# html = """
+# {% macro input_func(name, value, type="text"), size=40 %}
+#        <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}">
+# {% endmacro%}
+#
+# <p>{{ input_func('name', 'Введите имя') }}</p>
+# <p>{{ input_func('psw', 'Пароль', 'password') }}</p>
+# <p>{{ input_func('email', 'Электронная почта', 'email') }}</p>
+# """
+#
+#
+# tm= Template(html)
+# msg = tm.render()
+#
+# print(msg)
 
-new = [
-    {'id': 'index', 'text': 'Главная'},
-    {'id': 'news', 'text': 'Новости'},
-    {'id': 'about', 'text': 'О компании'},
-    {'id': 'shop', 'text': 'Магазин'},
-    {'id': 'contacts', 'text': 'Контакты'}
-]
+
+# from jinja2 import Environment, FileSystemLoader
+#
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.0}
+# ]
+#
+# file_loader = FileSystemLoader('templates')
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('about.html')
+# msg = tm.render(users=persons, title="About Jinja")
+#
+# print(msg)
+
+from jinja2 import Template
 
 
-link = """<ul>
-{%- for c in new %}
-{%- if c['id'] == 'index' %}
-<li><a href="/{{ c['id'] }}" class="active">{{ c['text'] }}</a></li>
-{%- else %}
-<li><a href="/{{ c['id'] }}">{{ c['text'] }}</a></li>
-{%- endif %}
-{%- endfor %}
-</ul>"""
+html = """
+{%- macro input_field(name, placeholder, type="text") -%}
+<p><input type="{{ type }}" name="{{ name }}" placeholder="{{ placeholder }}"></p>
+{% endmacro %}
 
-tm = Template(link)
-msg = tm.render(new=new)
+{{ input_field('firstname', 'Имя', 'text') }} 
+{{ input_field('lastname', 'Фамилия', 'text') }} 
+{{ input_field('address', 'Адрес', 'text') }} 
+{{ input_field('phone', 'Телефон', 'tel') }} 
+{{ input_field('email', 'Почта', 'email') }} 
+"""
+
+tm= Template(html)
+msg = tm.render()
 
 print(msg)
+
+
+
+
+
+
+
+
+
