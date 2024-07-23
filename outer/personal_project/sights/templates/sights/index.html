@@ -1,0 +1,28 @@
+{% extends 'sights/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Интересные места города</h1>
+
+<div class="img">
+    <img src="{% static 'sights/kirov.jpeg' %}" alt="">
+</div>
+
+<h2>Киров-Вятка-Хлынов</h2>
+
+<div class="space">
+    {% for count in counts %}
+    <div class="elem">
+        <div>
+            <img src="{{ count.image.url }}" alt="">
+        </div>
+        <div class="text">
+            <h2><a href="{{ count.url }}" target="_blank">{{ count.title }}</a></h2>
+            <p>{{ count.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
