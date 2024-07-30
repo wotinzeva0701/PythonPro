@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<div class="menu">
+    <div class="wrap">
+        <ul>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'blogs' %}">История Кировской области</a></li>
+        </ul>
+    </div>
+
+</div>
         <div class="count">
         <div class="rew">
             {% block content %}
