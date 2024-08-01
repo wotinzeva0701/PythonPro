@@ -1,0 +1,16 @@
+
+{% extends 'sights/base.html' %}
+{% block content %}
+<div class="two">
+    <h1>Регистрация:</h1>
+</div>
+
+<h2 style="color: red">{{ error }}</h2>
+<form method="post" class="bg">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="center">
+        <button class="btn">Зарегистрироваться</button>
+    </div>
+</form>
+{% endblock %}

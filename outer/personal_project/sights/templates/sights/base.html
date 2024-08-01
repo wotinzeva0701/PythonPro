@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title></title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -12,15 +12,27 @@
         <ul>
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'blogs' %}">История Кировской области</a></li>
+            {% if user.is_authenticated %}
+            <li>Пользователь: {{ user.username }}</li>
+            <li>
+                <form action="{% url 'logoutuser' %}" method="post">
+                    {% csrf_token %}
+                    <button class="top">Выйти</button>
+                </form>
+            </li>
+            {% else %}
+            <li><a href="{% url 'formauser' %}">Зарегистрироваться</a></li>
+            <li><a href="{% url 'loginuser' %}">Войти</a></li>
+            {% endif %}
         </ul>
     </div>
-
 </div>
-        <div class="count">
-        <div class="rew">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
+
+{% block content %}
+{% endblock %}
+
 </body>
 </html>
+
+
+

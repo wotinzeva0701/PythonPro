@@ -2,13 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1>Интересные места города</h1>
+<div class="two">
+    <h1>Интересные места города</h1>
+</div>
 
 <div class="img">
     <img src="{% static 'sights/kirov.jpeg' %}" alt="">
 </div>
 
-<h2>Киров-Вятка-Хлынов</h2>
+<div class="two">
+    <h1>Киров-Вятка-Хлынов</h1>
+</div>
+
 
 <div class="space">
     {% for count in counts %}

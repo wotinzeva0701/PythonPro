@@ -6,7 +6,7 @@
 
 {% for blog in blogs %}
 <div class="elem">
-    <h2 class="top"><a href="{% url 'detail' blog.id %}">{{ blog.title }}</a></h2>
+    <h2 class="topic"><a href="{% url 'detail' blog.id %}">{{ blog.title }}</a></h2>
     <div class="blog_text">
         <p>{{ blog.description|truncatechars:200 }}</p>
     </div>

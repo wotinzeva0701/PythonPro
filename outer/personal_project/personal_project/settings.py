@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sights.apps.SightsConfig',
     'blog.apps.BlogConfig',
+    'forma.apps.FormaConfig',
 ]
 
 MIDDLEWARE = [
