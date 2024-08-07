@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -56,3 +57,13 @@ def loginuser(request):
         else:
             login(request, user)
             return redirect('registerform')
+
+
+@login_required
+def personaluser(request):
+    return render(request, 'forma/personaluser.html')
+
+
+@login_required
+def guideuser(request):
+    return render(request, 'forma/guideuser.html')

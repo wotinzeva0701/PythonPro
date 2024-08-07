@@ -7,13 +7,12 @@
 </div>
 
 <div class="img">
-    <img src="{% static 'sights/kirov.jpeg' %}" alt="">
+    <img src="{% static 'sights/er.jpg' %}" alt="">
 </div>
 
 <div class="two">
-    <h1>Киров-Вятка-Хлынов</h1>
+    <h1>Хлынов-Вятка-Киров</h1>
 </div>
-
 
 <div class="space">
     {% for count in counts %}
@@ -24,10 +23,10 @@
         <div class="text">
             <h2><a href="{{ count.url }}" target="_blank">{{ count.title }}</a></h2>
             <p>{{ count.description }}</p>
+               {% endfor %}
         </div>
-    </div>
-    {% endfor %}
-</div>
 
+    </div>
+</div>
 
 {% endblock %}

@@ -10,26 +10,32 @@
 <div class="menu">
     <div class="wrap">
         <ul>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'blogs' %}">История Кировской области</a></li>
-            {% if user.is_authenticated %}
-            <li>Пользователь: {{ user.username }}</li>
+            <li><a href="{% url 'guideuser' %}">Гид</a></li>
+            <li class="top">Пользователь: {{ user.username }}</li>
+
             <li>
                 <form action="{% url 'logoutuser' %}" method="post">
                     {% csrf_token %}
                     <button class="top">Выйти</button>
                 </form>
             </li>
+
             {% else %}
-            <li><a href="{% url 'formauser' %}">Зарегистрироваться</a></li>
-            <li><a href="{% url 'loginuser' %}">Войти</a></li>
-            {% endif %}
         </ul>
+        <div class="register wrap">
+            <ul>
+                <li><a href="{% url 'formauser' %}">Зарегистрироваться</a></li>
+                <li><a href="{% url 'loginuser' %}">Войти</a></li>
+                <li><a href="{% url 'personaluser' %}">Личный кабинет</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </div>
 
-{% block content %}
-{% endblock %}
 
 </body>
 </html>
